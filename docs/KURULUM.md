@@ -45,13 +45,13 @@ Kullanım:
 
 ## 4. Sistemin Başlatılması
 
-Tüm ayarlar bittikten sonra sistemi `mobsec` CLI üzerinden başlatabilirsiniz:
+Tüm ayarlar bittikten sonra sistemi `neon` CLI üzerinden başlatabilirsiniz:
 
 ```bash
-sudo ./mobsec start all
+sudo ./neon start all
 ```
 
 Sistem durumunu kontrol etmek için:
 ```bash
-sudo ./mobsec status
+sudo ./neon status
 ```

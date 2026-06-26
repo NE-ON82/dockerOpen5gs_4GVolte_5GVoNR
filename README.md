@@ -1,6 +1,6 @@
-# MobSec - 4G/5G ve IMS Otomasyon Altyapısı
+# Neon - 4G/5G ve IMS Otomasyon Altyapısı
 
-MobSec, **Open5GS** ve **Kamailio (IMS)** tabanlı, 4G (VoLTE) ve 5G Standalone (VoNR) ağları kurmayı, yönetmeyi ve mobil cihazlara SMS/Arama hizmeti vermeyi sağlayan kapsamlı bir otomasyon ortamıdır. B210 (USRP) ve Sysmo SDR radyolarıyla tam uyumlu çalışan bu altyapı, tüm alt sistemleri `mobsec` isimli tek bir CLI üzerinden yönetilebilir hale getirir.
+Neon, **Open5GS** ve **Kamailio (IMS)** tabanlı, 4G (VoLTE) ve 5G Standalone (VoNR) ağları kurmayı, yönetmeyi ve mobil cihazlara SMS/Arama hizmeti vermeyi sağlayan kapsamlı bir otomasyon ortamıdır. B210 (USRP) ve Sysmo SDR radyolarıyla tam uyumlu çalışan bu altyapı, tüm alt sistemleri `neon` isimli tek bir CLI üzerinden yönetilebilir hale getirir.
 
 ## Özellikler
 
@@ -11,7 +11,7 @@ MobSec, **Open5GS** ve **Kamailio (IMS)** tabanlı, 4G (VoLTE) ve 5G Standalone 
 | **IMS & VoLTE** | ✅ Aktif | Kamailio (P/I/S-CSCF) ve pyHSS ile SIP haberleşmesi, Rx arayüzü. |
 | **5G VoNR** | ✅ Aktif | N5 arayüzü üzerinden PCF & P-CSCF tam entegrasyonu. |
 | **SMS** | ✅ Aktif | OsmoSMSC üzerinden IMS entegre metin mesajlaşma. |
-| **CLI Yönetimi** | ✅ Aktif | Tek komutla sistem başlatma, durdurma ve abone yönetimi (`mobsec`). |
+| **CLI Yönetimi** | ✅ Aktif | Tek komutla sistem başlatma, durdurma ve abone yönetimi (`neon`). |
 
 ## Hızlı Başlangıç
 
@@ -19,7 +19,7 @@ Sistemi Ubuntu makinenizde kurmak için aşağıdaki adımları izleyin:
 
 ```bash
 # 1. Repoyu klonlayıp dizine girin
-cd mobsec-repo
+cd neon-repo
 
 # 2. Bağımlılıkları yükleyin ve İmajları derleyin (Sudo gereklidir)
 sudo ./install.sh
@@ -30,8 +30,8 @@ cp .env.example .env
 nano .env # DOCKER_HOST_IP=<HOST_IP> kısmına kendi sunucu IP'nizi yazın
 cd ..
 
-# 4. Mobsec CLI ile tüm sistemi başlatın
-sudo ./mobsec start all
+# 4. Neon CLI ile tüm sistemi başlatın
+sudo ./neon start all
 ```
 
 ## Dokümantasyon ve Rehberler
@@ -39,7 +39,7 @@ sudo ./mobsec start all
 Detaylı kullanım ve özel durumlar için `docs/` klasöründeki rehberleri inceleyin:
 
 1. [Kurulum Rehberi (KURULUM.md)](docs/KURULUM.md)
-2. [CLI Kullanımı (MOBSEC_CLI.md)](docs/MOBSEC_CLI.md)
+2. [CLI Kullanımı (NEON_CLI.md)](docs/NEON_CLI.md)
 3. [Abone Ekleme İşlemleri (ABONE_EKLEME.md)](docs/ABONE_EKLEME.md)
 4. [SIM Kart Programlama (SIM_PROGRAMLAMA.md)](docs/SIM_PROGRAMLAMA.md)
 5. [Telefon APN Ayarları (APN_AYARI.md)](docs/APN_AYARI.md)

@@ -4,17 +4,17 @@ Bu belgede, 4G/VoLTE ve 5G/VoNR testleri için abone ekleme adımları açıklan
 
 > **ÖNEMLİ:** Buradaki değerler örnektir. Gerçek Ki ve OPc şifrelerini asla kod veya döküman içine yazmayın.
 
-## Yöntem 1: mobsec CLI Kullanımı (Önerilen)
+## Yöntem 1: neon CLI Kullanımı (Önerilen)
 
 Tüm veritabanı işlemlerini (WebUI + pyHSS) tek seferde yapan komut:
 
 ```bash
-sudo ./mobsec subscriber add <IMSI> <KI> <OPC> <MSISDN> <IPv4>
+sudo ./neon subscriber add <IMSI> <KI> <OPC> <MSISDN> <IPv4>
 ```
 
 Örnek Kullanım:
 ```bash
-sudo ./mobsec subscriber add 001010000000001 KI_PLACEHOLDER OPC_PLACEHOLDER 905330000000 10.45.0.10
+sudo ./neon subscriber add 001010000000001 KI_PLACEHOLDER OPC_PLACEHOLDER 905330000000 10.45.0.10
 ```
 
 Bu komut sırasıyla:

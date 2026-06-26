@@ -50,4 +50,4 @@ docker-compose -f 4g-volte-deploy.yaml pull
 
 echo "[i] Kurulum tamamlandı."
 echo "[i] '.env.example' dosyasını '.env' olarak kopyalayın ve içerisindeki <HOST_IP> alanlarını düzenleyin."
-echo "[i] Başlamak için CLI'yi kullanın: sudo ./mobsec start"
+echo "[i] Başlamak için CLI'yi kullanın: sudo ./neon start"

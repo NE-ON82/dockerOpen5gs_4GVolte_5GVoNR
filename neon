@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# mobsec — VoLTE ve VoNR (4G/5G) Test Ağı Yönetim CLI'ı
+# neon — VoLTE ve VoNR (4G/5G) Test Ağı Yönetim CLI'ı
 # KATMAN 1 (Okuyan Komutlar)
 
 set -euo pipefail
@@ -21,7 +21,7 @@ fi
 if ! docker ps >/dev/null 2>&1; then
     if ! sudo -n docker ps >/dev/null 2>&1; then
         echo "[HATA] Docker komutları için sudo yetkisi gerekiyor."
-        echo "Lütfen scripti 'sudo ./mobsec' şeklinde çalıştırın."
+        echo "Lütfen scripti 'sudo ./neon' şeklinde çalıştırın."
         exit 1
     else
         DOCKER_CMD="sudo docker"
@@ -35,7 +35,7 @@ _calisan_containerlar() {
 }
 
 cmd_status() {
-    echo "════════ MOBSEC 4G/5G AĞ DURUMU ════════"
+    echo "════════ NEON 4G/5G AĞ DURUMU ════════"
     local names
     names=$(_calisan_containerlar)
 
@@ -81,7 +81,7 @@ cmd_subscriber_show() {
 
     if [[ "$net_type" != "4g" && "$net_type" != "5g" ]]; then
         echo "[HATA] Lütfen ağ türünü belirtin: 4g veya 5g"
-        echo "Kullanım: ./mobsec subscriber show 4g|5g [IMSI]"
+        echo "Kullanım: ./neon subscriber show 4g|5g [IMSI]"
         exit 1
     fi
 
@@ -160,7 +160,7 @@ cmd_subscriber_set_msisdn() {
     local yeni_msisdn="${2:-}"
 
     if [ -z "$imsi" ] || [ -z "$yeni_msisdn" ]; then
-        echo "[HATA] Kullanım: ./mobsec subscriber set-msisdn <IMSI> <YENI_MSISDN>"
+        echo "[HATA] Kullanım: ./neon subscriber set-msisdn <IMSI> <YENI_MSISDN>"
         exit 1
     fi
 
@@ -217,7 +217,7 @@ cmd_subscriber_add() {
 
     if [ -z "$imsi" ] || [ -z "$ki" ] || [ -z "$opc" ] || [ -z "$msisdn" ]; then
         echo "[HATA] Eksik parametre! --imsi, --ki, --opc ve --msisdn zorunludur."
-        echo "Kullanım: ./mobsec subscriber add --imsi X --ki Y --opc Z --msisdn M [--4g|--5g]"
+        echo "Kullanım: ./neon subscriber add --imsi X --ki Y --opc Z --msisdn M [--4g|--5g]"
         exit 1
     fi
 
@@ -279,12 +279,12 @@ cmd_start() {
     local force_flag="${3:-}"
 
     if [[ "$net_type" != "4g" && "$net_type" != "5g" ]]; then
-        echo "[HATA] Kullanım: ./mobsec start 4g|5g core|radyo|all [--force]"
+        echo "[HATA] Kullanım: ./neon start 4g|5g core|radyo|all [--force]"
         exit 1
     fi
 
     if [[ "$comp" != "core" && "$comp" != "radyo" && "$comp" != "all" ]]; then
-        echo "[HATA] Kullanım: ./mobsec start 4g|5g core|radyo|all [--force]"
+        echo "[HATA] Kullanım: ./neon start 4g|5g core|radyo|all [--force]"
         exit 1
     fi
 
@@ -295,7 +295,7 @@ cmd_start() {
                 echo "4G kapatılıyor (--force)..."
                 (cd "${OPEN5GS_DIR}" && $DOCKER_CMD compose -f 4g-volte-deploy.yaml down)
             else
-                echo "HATA: 4G aktif. Önce './mobsec stop 4g all' veya '--force' kullan."
+                echo "HATA: 4G aktif. Önce './neon stop 4g all' veya '--force' kullan."
                 exit 1
             fi
         fi
@@ -305,7 +305,7 @@ cmd_start() {
                 echo "5G kapatılıyor (--force)..."
                 (cd "${OPEN5GS_DIR}" && $DOCKER_CMD compose -f sa-vonr-deploy.yaml down)
             else
-                echo "HATA: 5G aktif. Önce './mobsec stop 5g all' veya '--force' kullan."
+                echo "HATA: 5G aktif. Önce './neon stop 5g all' veya '--force' kullan."
                 exit 1
             fi
         fi
@@ -348,12 +348,12 @@ cmd_stop() {
     local comp="${2:-}"
 
     if [[ "$net_type" != "4g" && "$net_type" != "5g" ]]; then
-        echo "[HATA] Kullanım: ./mobsec stop 4g|5g core|radyo|all"
+        echo "[HATA] Kullanım: ./neon stop 4g|5g core|radyo|all"
         exit 1
     fi
 
     if [[ "$comp" != "core" && "$comp" != "radyo" && "$comp" != "all" ]]; then
-        echo "[HATA] Kullanım: ./mobsec stop 4g|5g core|radyo|all"
+        echo "[HATA] Kullanım: ./neon stop 4g|5g core|radyo|all"
         exit 1
     fi
 
@@ -387,7 +387,7 @@ cmd_calibrate() {
     shift 2
 
     if [[ "$net_type" != "4g" && "$net_type" != "5g" ]]; then
-        echo "[HATA] Kullanım: ./mobsec calibrate 4g|5g power|arfcn|plmn [değerler]"
+        echo "[HATA] Kullanım: ./neon calibrate 4g|5g power|arfcn|plmn [değerler]"
         exit 1
     fi
 
@@ -437,7 +437,7 @@ cmd_calibrate() {
     elif [ "$param" = "arfcn" ]; then
         local new_arfcn="${1:-}"
         if [ -z "$new_arfcn" ]; then
-            echo "[HATA] Kullanım: ./mobsec calibrate $net_type arfcn <deger>"
+            echo "[HATA] Kullanım: ./neon calibrate $net_type arfcn <deger>"
             exit 1
         fi
 
@@ -468,7 +468,7 @@ cmd_calibrate() {
         done
 
         if [ -z "$mcc" ] || [ -z "$mnc" ]; then
-            echo "[HATA] Kullanım: ./mobsec calibrate $net_type plmn -mcc X -mnc Y"
+            echo "[HATA] Kullanım: ./neon calibrate $net_type plmn -mcc X -mnc Y"
             exit 1
         fi
         if ! [[ "$mcc" =~ ^[0-9]{3}$ && "$mnc" =~ ^[0-9]{3}$ ]]; then
@@ -494,7 +494,7 @@ cmd_calibrate() {
         do_restart=1
     else
         echo "[HATA] Bilinmeyen calibrate parametresi: $param"
-        echo "Kullanım: ./mobsec calibrate 4g|5g power|arfcn|plmn [değerler]"
+        echo "Kullanım: ./neon calibrate 4g|5g power|arfcn|plmn [değerler]"
         exit 1
     fi
 
@@ -508,14 +508,14 @@ cmd_calibrate() {
 main() {
     if [ $# -eq 0 ]; then
         echo "Kullanım:"
-        echo "  ./mobsec status"
-        echo "  ./mobsec start 4g|5g core|radyo|all [--force]"
-        echo "  ./mobsec stop 4g|5g core|radyo|all"
-        echo "  ./mobsec calibrate 4g|5g power|arfcn|plmn [degerler]"
-        echo "  ./mobsec subscriber show 4g|5g [IMSI]"
-        echo "  ./mobsec subscriber set-msisdn <IMSI> <YENI_MSISDN>"
-        echo "  ./mobsec subscriber add --imsi X --ki Y --opc Z --msisdn M [--4g|--5g]"
-        echo "  ./mobsec subscriber del --imsi X [--4g|--5g]"
+        echo "  ./neon status"
+        echo "  ./neon start 4g|5g core|radyo|all [--force]"
+        echo "  ./neon stop 4g|5g core|radyo|all"
+        echo "  ./neon calibrate 4g|5g power|arfcn|plmn [degerler]"
+        echo "  ./neon subscriber show 4g|5g [IMSI]"
+        echo "  ./neon subscriber set-msisdn <IMSI> <YENI_MSISDN>"
+        echo "  ./neon subscriber add --imsi X --ki Y --opc Z --msisdn M [--4g|--5g]"
+        echo "  ./neon subscriber del --imsi X [--4g|--5g]"
         exit 1
     fi
 

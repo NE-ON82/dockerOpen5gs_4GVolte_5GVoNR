@@ -10,10 +10,10 @@ Kamailio tabanlı P-CSCF modülü derlenirken, ağın Policy (Kural/QoS) fonksiy
 
 Bir P-CSCF bileşeni aynı anda hem Rx hem N5 sinyalleşmesini idare edemez. Bu nedenle 4G ortamından 5G ortamına geçerken (veya tam tersi) P-CSCF yapılandırması (config dosyasında `#define WITH_RX` veya `#define WITH_N5`) yeniden ayarlanmalı ve konteyner yeniden başlatılmalıdır.
 
-## mobsec CLI Otomatik Geçiş Mekanizması
+## neon CLI Otomatik Geçiş Mekanizması
 
-`mobsec` CLI, bu handikapı aşmak üzere tasarlanmıştır:
-- `sudo ./mobsec start 5g` çalıştırdığınızda, CLI ilk olarak 4G'nin kapalı olduğundan emin olur (Transition Strategy).
+`neon` CLI, bu handikapı aşmak üzere tasarlanmıştır:
+- `sudo ./neon start 5g` çalıştırdığınızda, CLI ilk olarak 4G'nin kapalı olduğundan emin olur (Transition Strategy).
 - Ardından `pcscf.cfg` içerisindeki makroları tarar. Eğer `WITH_RX` aktifse, bunu otomatik olarak `WITH_N5` ile değiştirir, P-CSCF'i yeniden başlatır.
 - Böylece VoNR çağrılarındaki `P-CSCF <-> PCF` iletişimi sorunsuz gerçekleşir ve SIP davetleri kopmaz.
 

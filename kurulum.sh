@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# kurulum.sh - mobsec-repo'yu uzak bir PC'ye SSH üzerinden kurar.
+# kurulum.sh - neon-repo'yu uzak bir PC'ye SSH üzerinden kurar.
 # Kullanım: ./kurulum.sh <hedef_ip> <hedef_kullanici>
 
 if [ -z "$1" ] || [ -z "$2" ]; then
@@ -10,7 +10,7 @@ fi
 
 TARGET_IP="$1"
 TARGET_USER="$2"
-TARGET_DIR="/home/$TARGET_USER/mobsec-repo"
+TARGET_DIR="/home/$TARGET_USER/neon-repo"
 
 echo "[i] Hedef: ${TARGET_USER}@${TARGET_IP}:${TARGET_DIR}"
 
